@@ -7,7 +7,7 @@ library(tidyverse)
 
 # Initialize simulation values
 k <- 1000
-x <- seq(from = 0, to = 12, length.out = 200)
+x <- seq(from = -100, to = 100, length.out = 200)
 n <- length(x)
 
 #Set up dataframe
@@ -23,28 +23,27 @@ exp.min.y <- 2 + 4*min(x)
 exp.max.y <- 2 + 4*max(x)
 
 #for the 4 signal:1 noise case
-#take sqrt so sigma^2 becomes sigma, as required by rnorm, and 
-#multiply by 2 so 95% of points fall within the "noise value"
-sigma.median41 <- sqrt(abs(exp.median.y)/4)*2
-sigma.min41 <- sqrt(abs(exp.min.y)/4)*2
-sigma.max41 <- sqrt(abs(exp.max.y)/4)*2
+#take sqrt so sigma^2 becomes sigma, as required by rnorm
+sigma.median41 <- sqrt(abs(exp.median.y)/4)
+sigma.min41 <- sqrt(abs(exp.min.y)/4)
+sigma.max41 <- sqrt(abs(exp.max.y)/4)
 y.median41 <- 2 + 4*x + rnorm(n, 0, sigma.median41)
 y.min41 <- 2 + 4*x + rnorm(n, 0, sigma.min41)
 y.max41 <- 2 + 4*x  + rnorm(n,0,sigma.max41)
 
 #for the 1:1 case
-sigma.median11 <- sqrt(abs(exp.median.y))*2
-sigma.min11 <- sqrt(abs(exp.min.y))*2
-sigma.max11 <- sqrt(abs(exp.max.y))*2
+sigma.median11 <- sqrt(abs(exp.median.y))
+sigma.min11 <- sqrt(abs(exp.min.y))
+sigma.max11 <- sqrt(abs(exp.max.y))
 y.median11 <- 2 + 4*x + rnorm(n, 0, sigma.median11)
 y.min11 <- 2 + 4*x + rnorm(n, 0, sigma.min11)
 y.max11 <- 2 + 4*x  + rnorm(n,0,sigma.max11)
 
 
 #for the 1 signal:4 noise case
-sigma.median14 <- sqrt(abs(exp.median.y)*4)*2
-sigma.min14 <- sqrt(abs(exp.min.y)*4)*2
-sigma.max14 <- sqrt(abs(exp.max.y)*4)*2
+sigma.median14 <- sqrt(abs(exp.median.y)*4)
+sigma.min14 <- sqrt(abs(exp.min.y)*4)
+sigma.max14 <- sqrt(abs(exp.max.y)*4)
 y.median14 <- 2 + 4*x + rnorm(n, 0, sigma.median14)
 y.min14 <- 2 + 4*x + rnorm(n, 0, sigma.min14)
 y.max14 <- 2 + 4*x  + rnorm(n,0,sigma.max14)
